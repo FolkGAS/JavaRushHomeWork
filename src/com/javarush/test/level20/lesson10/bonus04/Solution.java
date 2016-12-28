@@ -65,11 +65,11 @@ public class Solution
         }
         Solution tt = (Solution)((Solution) list).clone();
         for (String n : list){
-            System.out.print(n + "<-" + ((Solution) list).getParent(n) + "\t");
+            System.out.print(n + "<-" + ((Solution) list).getParent(n) + " L" + ((Solution) list).getLeft(n) + " R" + ((Solution) list).getRight(n) + "\t");
         }
         System.out.println("");
         for (String n : tt)
-            System.out.print(n + "<-" + ((Solution) tt).getParent(n) + "\t");
+            System.out.print(n + "<-" + ((Solution) tt).getParent(n) + " L" + ((Solution) tt).getLeft(n) + " R" + ((Solution) tt).getRight(n) + "\t");
         System.out.println("");
         System.out.println("list.size = " + list.size());
         System.out.println("tt.size = " + tt.size());
@@ -84,10 +84,10 @@ public class Solution
         list.remove("7");
         System.out.println("list.remove(\"7\")\t7, 15");
         for (String n : list)
-            System.out.print(n + "<-" + ((Solution) list).getParent(n) + "\t");
+            System.out.print(n + "<-" + ((Solution) list).getParent(n) + " L" + ((Solution) list).getLeft(n) + " R" + ((Solution) list).getRight(n) + "\t");
         System.out.println("");
         for (String n : tt)
-            System.out.print(n + "<-" + ((Solution) tt).getParent(n) + "\t");
+            System.out.print(n + "<-" + ((Solution) tt).getParent(n) + " L" + ((Solution) tt).getLeft(n) + " R" + ((Solution) tt).getRight(n) + "\t");
         System.out.println("");
         for (Node s : ((Solution) list).beParents)
             System.out.print(s.item + " . ");
@@ -103,10 +103,10 @@ public class Solution
         list.remove("2");
         System.out.println("list.remove(\"2\")\t2, 5, 6, 11, 12, 13, 14");
         for (String n : list)
-            System.out.print(n + "<-" + ((Solution) list).getParent(n) + "\t");
+            System.out.print(n + "<-" + ((Solution) list).getParent(n) + " L" + ((Solution) list).getLeft(n) + " R" + ((Solution) list).getRight(n) + "\t");
         System.out.println("");
         for (String n : tt)
-            System.out.print(n + "<-" + ((Solution) tt).getParent(n) + "\t");
+            System.out.print(n + "<-" + ((Solution) tt).getParent(n) + " L" + ((Solution) tt).getLeft(n) + " R" + ((Solution) tt).getRight(n) + "\t");
         System.out.println("");
         for (Node s : ((Solution) list).beParents)
             System.out.print(s.item + " . ");
@@ -121,10 +121,10 @@ public class Solution
         tt.remove("1");
         System.out.println("tt.remove(\"1\")\t1, 3, 4, 7, 8, 9, 10, 15");
         for (String n : list)
-            System.out.print(n + "<-" + ((Solution) list).getParent(n) + "\t");
+            System.out.print(n + "<-" + ((Solution) list).getParent(n) + " L" + ((Solution) list).getLeft(n) + " R" + ((Solution) list).getRight(n) + "\t");
         System.out.println("");
         for (String n : tt)
-            System.out.print(n + "<-" + ((Solution) tt).getParent(n) + "\t");
+            System.out.print(n + "<-" + ((Solution) tt).getParent(n) + " L" + ((Solution) tt).getLeft(n) + " R" + ((Solution) tt).getRight(n) + "\t");
         System.out.println("");
         for (Node s : ((Solution) list).beParents)
             System.out.print(s.item + " . ");
@@ -139,10 +139,10 @@ public class Solution
         list.remove("7");
         System.out.println("list.remove(\"7\") no changes");
         for (String n : list)
-            System.out.print(n + "<-" + ((Solution) list).getParent(n) + "\t");
+            System.out.print(n + "<-" + ((Solution) list).getParent(n) + " L" + ((Solution) list).getLeft(n) + " R" + ((Solution) list).getRight(n) + "\t");
         System.out.println("");
         for (String n : tt)
-            System.out.print(n + "<-" + ((Solution) tt).getParent(n) + "\t");
+            System.out.print(n + "<-" + ((Solution) tt).getParent(n) + " L" + ((Solution) tt).getLeft(n) + " R" + ((Solution) tt).getRight(n) + "\t");
         System.out.println("");
         for (Node s : ((Solution) list).beParents)
             System.out.print(s.item + " . ");
@@ -157,10 +157,10 @@ public class Solution
         list.remove("2");
         System.out.println("list.remove(\"2\") no changes");
         for (String n : list)
-            System.out.print(n + "<-" + ((Solution) list).getParent(n) + "\t");
+            System.out.print(n + "<-" + ((Solution) list).getParent(n) + " L" + ((Solution) list).getLeft(n) + " R" + ((Solution) list).getRight(n) + "\t");
         System.out.println("");
         for (String n : tt)
-            System.out.print(n + "<-" + ((Solution) tt).getParent(n) + "\t");
+            System.out.print(n + "<-" + ((Solution) tt).getParent(n) + " L" + ((Solution) tt).getLeft(n) + " R" + ((Solution) tt).getRight(n) + "\t");
         System.out.println("");
         for (Node s : ((Solution) list).beParents)
             System.out.print(s.item + " . ");
@@ -175,10 +175,10 @@ public class Solution
 
         list.remove("5");
         for (String n : list)
-            System.out.print(n + "<-" + ((Solution) list).getParent(n) + "\t");
+            System.out.print(n + "<-" + ((Solution) list).getParent(n) + " L" + ((Solution) list).getLeft(n) + " R" + ((Solution) list).getRight(n) + "\t");
         System.out.println("");
         for (String n : tt)
-            System.out.print(n + "<-" + ((Solution) tt).getParent(n) + "\t");
+            System.out.print(n + "<-" + ((Solution) tt).getParent(n) + " L" + ((Solution) tt).getLeft(n) + " R" + ((Solution) tt).getRight(n) + "\t");
         System.out.println("");
         for (Node s : ((Solution) list).beParents)
             System.out.print(s.item + " . ");
@@ -491,9 +491,8 @@ public class Solution
     }
 
     public String getParent(String value) {
-        if (value == null) return null;
+        if (value == null || first == null) return null;
         Node next = first;
-        if (first == null) return null;
         if (value.equals(first.item)) return null;
         while(!value.equals(next.item)){
             if (next == last) return null;
@@ -501,6 +500,32 @@ public class Solution
         }
         if (next.parent != null)
             return next.parent.item;
+        return null;
+    }
+
+    String getLeft(String value) {
+        if (value == null || first == null) return null;
+        Node next = first;
+        if (value.equals(first.item)) return first.left.item;
+        while(!value.equals(next.item)){
+            if (next == last) return null;
+            next = next.next;
+        }
+        if (next.left != null)
+            return next.left.item;
+        return null;
+    }
+
+    String getRight(String value) {
+        if (value == null || first == null) return null;
+        Node next = first;
+        if (value.equals(first.item)) return first.right.item;
+        while(!value.equals(next.item)){
+            if (next == last) return null;
+            next = next.next;
+        }
+        if (next.right != null)
+            return next.right.item;
         return null;
     }
 
@@ -514,49 +539,32 @@ public class Solution
         return null;
     }
 
-//-----------------------------------------------------------
-//-----------------------------------------------------------
-//
-//    public String getFirst() {
-//        final Node f = first;
-//        if (f == null)
-//            throw new NoSuchElementException();
-//        return f.item;
-//    }
-//
-//    public String getLast() {
-//        final Node l = last;
-//        if (l == null)
-//            throw new NoSuchElementException();
-//        return l.item;
-//    }
-//
-//    public boolean contains(Object o) {
-//        return indexOf(o) != -1;
-//    }
-//
-//    public int indexOf(Object o) {
-//        int index = 0;
-//        if (o == null) {
-//            for (Node x = first; x != null; x = x.next) {
-//                if (x.item == null)
-//                    return index;
-//                index++;
-//            }
-//        } else {
-//            for (Node x = first; x != null; x = x.next) {
-//                if (o.equals(x.item))
-//                    return index;
-//                index++;
-//            }
-//        }
-//        return -1;
-//    }
-//
-//    private boolean isPositionIndex(int index) {
-//        return index >= 0 && index <= size;
-//    }
-//
+    public boolean contains(Object o) {
+        return indexOf(o) != -1;
+    }
+
+    public int indexOf(Object o) {
+        int index = 0;
+        if (o == null) {
+            for (Node x = first; x != null; x = x.next) {
+                if (x.item == null)
+                    return index;
+                index++;
+            }
+        } else {
+            for (Node x = first; x != null; x = x.next) {
+                if (o.equals(x.item))
+                    return index;
+                index++;
+            }
+        }
+        return -1;
+    }
+
+    private boolean isPositionIndex(int index) {
+        return index >= 0 && index <= size;
+    }
+
 
     private boolean isElementIndex(int index) {
         return index >= 0 && index < size;
@@ -572,9 +580,6 @@ public class Solution
         return node(index).item;
     }
 
-//-----------------------------------------------------------
-//-----------------------------------------------------------
-
 @Override
     public Object clone() {
         Solution clone = new Solution();
@@ -583,6 +588,8 @@ public class Solution
         Node prev;
         Node next;
         Node par;
+        Node left;
+        Node right;
         clone.first = new Node(null, first.item, null);
         if (size() > 1)
         {
@@ -590,6 +597,8 @@ public class Solution
             next = clone.first;
             do
             {
+                left = nextNode.left;
+                right = nextNode.right;
                 nextNode = nextNode.next;
                 par = nextNode.parent;
                 clone.last = new Node(prev, nextNode.item, null);
@@ -612,6 +621,16 @@ public class Solution
                         break;
                     }
                 }
+            next = clone.first;
+            nextNode = first;
+            while (nextNode != null){
+                if (nextNode.left == null) next.left = null;
+                else next.left = clone.find(nextNode.left.item);
+                if (nextNode.right == null) next.right = null;
+                else next.right = clone.find(nextNode.right.item);
+                next = next.next;
+                nextNode = nextNode.next;
+            }
         }else {
             clone.first.item = first.item;
             clone.last = clone.first;
