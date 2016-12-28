@@ -1,5 +1,6 @@
 package com.javarush.test.level20.lesson10.bonus04;
 
+import java.io.IOException;
 import java.io.Serializable;
 import java.util.*;
 
@@ -55,18 +56,151 @@ public class Solution
     extends AbstractList<String>
     implements List<String>, Cloneable, Serializable
 {
-    public static void main(String[] args) {
+    public static void main(String[] args) throws IOException, ClassNotFoundException, CloneNotSupportedException
+    {
         List<String> list = new Solution();
-        for (int i = 1; i < 16; i++) {
+        for (int i = 1; i < 16; i++)
+        {
             list.add(String.valueOf(i));
         }
-        System.out.println("Expected 3, actual is " + ((Solution) list).getParent("8"));
-        list.remove("5");
-        System.out.println("Expected null, actual is " + ((Solution) list).getParent("11"));
+        Solution tt = (Solution)((Solution) list).clone();
+        for (String n : list){
+            System.out.print(n + "<-" + ((Solution) list).getParent(n) + "\t");
+        }
+        System.out.println("");
+        for (String n : tt)
+            System.out.print(n + "<-" + ((Solution) tt).getParent(n) + "\t");
+        System.out.println("");
+        System.out.println("list.size = " + list.size());
+        System.out.println("tt.size = " + tt.size());
+        for (Node s : ((Solution) list).beParents)
+            System.out.print(s.item + " . ");
+        System.out.println("");
+        for (Node s : ((Solution) tt).beParents)
+            System.out.print(s.item + " . ");
+        System.out.println("");
+        System.out.println("");
 
+        list.remove("7");
+        System.out.println("list.remove(\"7\")\t7, 15");
         for (String n : list)
-            System.out.print(n + " ");
+            System.out.print(n + "<-" + ((Solution) list).getParent(n) + "\t");
+        System.out.println("");
+        for (String n : tt)
+            System.out.print(n + "<-" + ((Solution) tt).getParent(n) + "\t");
+        System.out.println("");
+        for (Node s : ((Solution) list).beParents)
+            System.out.print(s.item + " . ");
+        System.out.println("");
+        for (Node s : ((Solution) tt).beParents)
+            System.out.print(s.item + " . ");
+        System.out.println("");
+        System.out.println("list.size = " + list.size());
+        System.out.println("tt.size = " + tt.size());
+
+        System.out.println("");
+
+        list.remove("2");
+        System.out.println("list.remove(\"2\")\t2, 5, 6, 11, 12, 13, 14");
+        for (String n : list)
+            System.out.print(n + "<-" + ((Solution) list).getParent(n) + "\t");
+        System.out.println("");
+        for (String n : tt)
+            System.out.print(n + "<-" + ((Solution) tt).getParent(n) + "\t");
+        System.out.println("");
+        for (Node s : ((Solution) list).beParents)
+            System.out.print(s.item + " . ");
+        System.out.println("");
+        for (Node s : ((Solution) tt).beParents)
+            System.out.print(s.item + " . ");
+        System.out.println("");
+        System.out.println("list.size = " + list.size());
+        System.out.println("tt.size = " + tt.size());
+        System.out.println("");
+
+        tt.remove("1");
+        System.out.println("tt.remove(\"1\")\t1, 3, 4, 7, 8, 9, 10, 15");
+        for (String n : list)
+            System.out.print(n + "<-" + ((Solution) list).getParent(n) + "\t");
+        System.out.println("");
+        for (String n : tt)
+            System.out.print(n + "<-" + ((Solution) tt).getParent(n) + "\t");
+        System.out.println("");
+        for (Node s : ((Solution) list).beParents)
+            System.out.print(s.item + " . ");
+        System.out.println("");
+        for (Node s : ((Solution) tt).beParents)
+            System.out.print(s.item + " . ");
+        System.out.println("");
+        System.out.println("list.size = " + list.size());
+        System.out.println("tt.size = " + tt.size());
+        System.out.println("");
+
+        list.remove("7");
+        System.out.println("list.remove(\"7\") no changes");
+        for (String n : list)
+            System.out.print(n + "<-" + ((Solution) list).getParent(n) + "\t");
+        System.out.println("");
+        for (String n : tt)
+            System.out.print(n + "<-" + ((Solution) tt).getParent(n) + "\t");
+        System.out.println("");
+        for (Node s : ((Solution) list).beParents)
+            System.out.print(s.item + " . ");
+        System.out.println("");
+        for (Node s : ((Solution) tt).beParents)
+            System.out.print(s.item + " . ");
+        System.out.println("");
+        System.out.println("list.size = " + list.size());
+        System.out.println("tt.size = " + tt.size());
+        System.out.println("");
+
+        list.remove("2");
+        System.out.println("list.remove(\"2\") no changes");
+        for (String n : list)
+            System.out.print(n + "<-" + ((Solution) list).getParent(n) + "\t");
+        System.out.println("");
+        for (String n : tt)
+            System.out.print(n + "<-" + ((Solution) tt).getParent(n) + "\t");
+        System.out.println("");
+        for (Node s : ((Solution) list).beParents)
+            System.out.print(s.item + " . ");
+        System.out.println("");
+        for (Node s : ((Solution) tt).beParents)
+            System.out.print(s.item + " . ");
+        System.out.println("");
+        System.out.println("list.size = " + list.size());
+        System.out.println("tt.size = " + tt.size());
+        System.out.println("");
+
+
+        list.remove("5");
+        for (String n : list)
+            System.out.print(n + "<-" + ((Solution) list).getParent(n) + "\t");
+        System.out.println("");
+        for (String n : tt)
+            System.out.print(n + "<-" + ((Solution) tt).getParent(n) + "\t");
+        System.out.println("");
+        for (Node s : ((Solution) list).beParents)
+            System.out.print(s.item + " . ");
+        System.out.println("");
+        for (Node s : ((Solution) tt).beParents)
+            System.out.print(s.item + " . ");
+        System.out.println("");
+        System.out.println("");
     }
+
+//    public static void main(String[] args) {
+//        List<String> list = new Solution();
+//        for (int i = 1; i < 16; i++) {
+//            list.add(String.valueOf(i));
+//        }
+//        System.out.println("Expected 3, actual is " + ((Solution) list).getParent("8"));
+//        list.remove("5");
+//        System.out.println("Expected null, actual is " + ((Solution) list).getParent("11"));
+//
+//        for (String n : list)
+//            System.out.print(n + " ");
+//    }
 
     int size = 0;
     boolean hasSecond = false;
@@ -205,7 +339,12 @@ public class Solution
         size--;
         modCount++;
         if (last == x && !beParents.contains(x.parent) && x != root) beParents.add(0, x.parent);
-        if (x.parent.left == x){
+        if (x.parent == null){
+            if (x == root.left)
+                root.left = null;
+            else if(x == root.right)
+                root.right = null;
+        }else if (x == x.parent.left){
             x.parent.left = x.parent.right;
             x.parent.right = null;
         }else x.parent.right = null;
@@ -352,6 +491,7 @@ public class Solution
     }
 
     public String getParent(String value) {
+        if (value == null) return null;
         Node next = first;
         if (first == null) return null;
         if (value.equals(first.item)) return null;
@@ -359,7 +499,19 @@ public class Solution
             if (next == last) return null;
             next = next.next;
         }
-        return next.parent.item;
+        if (next.parent != null)
+            return next.parent.item;
+        return null;
+    }
+
+    Node find (String str){
+        if (str == null || first == null) return null;
+        Node next = first;
+        while (next != null){
+            if (str.equals(next.item)) return next;
+            next = next.next;
+        }
+        return null;
     }
 
 //-----------------------------------------------------------
@@ -423,20 +575,57 @@ public class Solution
 //-----------------------------------------------------------
 //-----------------------------------------------------------
 
+@Override
     public Object clone() {
-        Node nextNode = root;
         Solution clone = new Solution();
+        if (size() == 0) {return clone;}
+        Node nextNode = first;
+        Node prev;
+        Node next;
+        Node par;
         clone.first = new Node(null, first.item, null);
-        do{
-            nextNode = nextNode.next;
-            clone.last = new Node(nextNode.prev, nextNode.item, nextNode.next);
-            if (clone.first.next == null) clone.first.next = clone.last;
-        }while (nextNode != last);
-        for (Node n : beParents)
-            for (Node cn : clone.beParents)
-                if (n.item.equals(cn.item))
-                    clone.beParents.add(cn);
+        if (size() > 1)
+        {
+            prev = clone.first;
+            next = clone.first;
+            do
+            {
+                nextNode = nextNode.next;
+                par = nextNode.parent;
+                clone.last = new Node(prev, nextNode.item, null);
+                if (par == null) clone.last.parent = null;
+                else clone.last.parent = clone.find(par.item);
+                clone.last.prev.next = clone.last;
+                prev = clone.last;
+            }
+            while (nextNode != last);
+            for (Node n : beParents)
+                while (next != null)
+                {
+                    if (n.item.equals(next.item))
+                        clone.beParents.add(next);
+                    if (next.next != null)
+                        next = next.next;
+                    else
+                    {
+                        next = clone.first;
+                        break;
+                    }
+                }
+        }else {
+            clone.first.item = first.item;
+            clone.last = clone.first;
+            clone.hasSecond = hasSecond;
+            clone.size = size;
+            clone.root = new Node(null, null, clone.first);
+            clone.root.left = clone.first;
+            return clone;
+        }
         clone.hasSecond = hasSecond;
+        clone.size = size;
+        clone.root = new Node(null, null, clone.first);
+        clone.root.left = clone.first;
+        if (root.right != null) clone.root.right = clone.first.next;
         return clone;
     }
 }
