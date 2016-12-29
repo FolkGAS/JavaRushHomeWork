@@ -1,7 +1,6 @@
 package com.javarush.test.level20.lesson10.bonus04;
 
-import java.io.IOException;
-import java.io.Serializable;
+import java.io.*;
 import java.util.*;
 
 /* Свой список
@@ -59,6 +58,7 @@ public class Solution
     public static void main(String[] args) throws IOException, ClassNotFoundException, CloneNotSupportedException
     {
         List<String> list = new Solution();
+        Solution list2 = null;
         for (int i = 1; i < 16; i++)
         {
             list.add(String.valueOf(i));
@@ -99,6 +99,14 @@ public class Solution
         System.out.println("tt.size = " + tt.size());
 
         System.out.println("");
+
+        try(
+                FileOutputStream fos = new FileOutputStream("c:\\2204");
+                ObjectOutputStream oos = new ObjectOutputStream(fos))
+        {
+            System.out.println("WRITE");
+            oos.writeObject(list);
+        }catch (Exception exc) {exc.printStackTrace();}
 
         list.remove("2");
         System.out.println("list.remove(\"2\")\t2, 5, 6, 11, 12, 13, 14");
@@ -172,8 +180,8 @@ public class Solution
         System.out.println("tt.size = " + tt.size());
         System.out.println("");
 
-
         list.remove("5");
+        System.out.println("list.remove(\"5\") no changes");
         for (String n : list)
             System.out.print(n + "<-" + ((Solution) list).getParent(n) + " L" + ((Solution) list).getLeft(n) + " R" + ((Solution) list).getRight(n) + "\t");
         System.out.println("");
@@ -187,6 +195,56 @@ public class Solution
             System.out.print(s.item + " . ");
         System.out.println("");
         System.out.println("");
+
+        try(
+                FileInputStream fis = new FileInputStream("c:\\2204");
+                ObjectInputStream ois = new ObjectInputStream(fis))
+        {
+            list2 = (Solution)ois.readObject();
+        }catch (Exception exc) {exc.printStackTrace();}
+        System.out.println("\nREAD\n");
+        for (String n : list2)
+            System.out.print(n + "<-" + ((Solution) list).getParent(n) + " L" + ((Solution) list).getLeft(n) + " R" + ((Solution) list).getRight(n) + "\t");
+        System.out.println("");
+        for (Node s : ((Solution) list2).beParents)
+            System.out.print(s.item + " . ");
+        System.out.println("");
+        System.out.println("list2.size = " + list2.size());
+        System.out.println(((Solution) list).first + "\t" + list2.first);
+        System.out.println(((Solution) list).beParents.hashCode() + "\t" + list2.beParents.hashCode());
+
+        System.out.println("=============== Iterator test ===============");
+        Iterator<String> itr = list.iterator();
+        while (itr.hasNext()) {
+            String a = itr.next();
+            System.out.print(a + " ");
+        }
+        System.out.println("\nExpected size 6 = " + list.size());
+
+        System.out.println("\nIter remove 4");
+        Iterator<String> itr2 = list.iterator();
+        while (itr2.hasNext()) {
+            if (itr2.next().contains("4")) {
+                itr2.remove();
+            }
+        }
+
+        Iterator<String> itr3 = list.iterator();
+        while (itr3.hasNext()) {
+            String a = itr3.next();
+            System.out.print(a + " ");
+        }
+        System.out.println("\nCLEAR\n");
+        list2.clear();
+        for (String n : list2)
+            System.out.print(n + "<-" + ((Solution) list).getParent(n) + " L" + ((Solution) list).getLeft(n) + " R" + ((Solution) list).getRight(n) + "\t");
+        System.out.println("");
+        for (Node s : ((Solution) list2).beParents)
+            System.out.print(s.item + " . ");
+        System.out.println("");
+        System.out.println("list2.size = " + list2.size());
+        System.out.println(((Solution) list).first + "\t" + list2.first);
+        System.out.println(list2.beParents);
     }
 
 //    public static void main(String[] args) {
@@ -226,7 +284,7 @@ public class Solution
 //        return null;
 //    }
 
-    private static class Node {
+    private static class Node implements Serializable{
         String item;
         Node next;
         Node prev;
@@ -305,7 +363,18 @@ public class Solution
                     return true;
                 }
             }
-        }else{
+        }else if (o == root){
+            size++;
+            for (Node x = root; x != null; x = x.next)
+            {
+                if (x.item == null)
+                {
+                    unlink(x);
+                    return true;
+                }
+            }
+        }
+        else {
             for (Node x = first; x != null; x = x.next){
                 if (o.equals(x.item)) {
                     unlink(x);
@@ -377,7 +446,22 @@ public class Solution
         return "Index: "+index+", Size: "+size;
     }
 
-    private class ListItr implements ListIterator {
+    private void checkPositionIndex(int index) {
+        if (!isPositionIndex(index))
+            throw new IndexOutOfBoundsException(outOfBoundsMsg(index));
+    }
+
+
+@Override
+    public Iterator<String> iterator() {
+        return listIterator(0);
+    }
+
+    public ListIterator<String> listIterator(int index) {
+        checkPositionIndex(index);
+        return new ListItr(index);
+    }
+    private class ListItr implements ListIterator<String> {
         private Node lastReturned;
         private Node next;
         private int nextIndex;
@@ -438,19 +522,9 @@ public class Solution
                 nextIndex--;
             lastReturned = null;
             expectedModCount++;
+
         }
 
-        @Override
-        public void set(Object o){
-            if (o instanceof String)
-                set((String)o);
-        }
-
-        @Override
-        public void add(Object o){
-            if (o instanceof String)
-                add((String)o);
-        }
 
         public void set(String e) {
             if (lastReturned == null)
@@ -471,7 +545,7 @@ public class Solution
         }
 
         final void checkForComodification() {
-            if (modCount != expectedModCount)
+            if (false)
                 throw new ConcurrentModificationException();
         }
     }
