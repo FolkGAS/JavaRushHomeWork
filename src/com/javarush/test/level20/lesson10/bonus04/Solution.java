@@ -55,140 +55,18 @@ public class Solution
     extends AbstractList<String>
     implements List<String>, Cloneable, Serializable
 {
-    public static void main(String[] args) throws IOException, ClassNotFoundException, CloneNotSupportedException
-    {
+    public static void main(String[] args) {
         List<String> list = new Solution();
-        Solution list2 = null;
-        for (int i = 1; i < 16; i++)
-        {
+        for (int i = 1; i < 16; i++) {
             list.add(String.valueOf(i));
         }
-        Solution tt = (Solution)((Solution) list).clone();
-        System.out.println("List:");
-        ((Solution) list).printSol();
-        System.out.println("Clone:");
-        tt.printSol();
-        System.out.println("---------------------------------");
-        System.out.println("");
-
-        list.remove("7");
-        System.out.println("list.remove(\"7\")\t7, 15");
-        System.out.println("List:");
-        ((Solution) list).printSol();
-        System.out.println("Clone:");
-        tt.printSol();
-        System.out.println("---------------------------------");
-        System.out.println("");
-        System.out.println("");
-
-        try(
-                FileOutputStream fos = new FileOutputStream("c:\\2204");
-                ObjectOutputStream oos = new ObjectOutputStream(fos))
-        {
-            System.out.println("WRITE");
-            oos.writeObject(list);
-        }catch (Exception exc) {exc.printStackTrace();}
-
-        list.remove("2");
-        System.out.println("list.remove(\"2\")\t2, 5, 6, 11, 12, 13, 14");
-        System.out.println("List:");
-        ((Solution) list).printSol();
-        System.out.println("Clone:");
-        tt.printSol();
-        System.out.println("---------------------------------");
-        System.out.println("");
-
-        tt.remove("1");
-        System.out.println("tt.remove(\"1\")\t1, 3, 4, 7, 8, 9, 10, 15");
-        System.out.println("List:");
-        ((Solution) list).printSol();
-        System.out.println("Clone:");
-        tt.printSol();
-        System.out.println("---------------------------------");
-        System.out.println("");
-
-        list.remove("7");
-        System.out.println("list.remove(\"7\") no changes");
-        System.out.println("List:");
-        ((Solution) list).printSol();
-        System.out.println("Clone:");
-        tt.printSol();
-        System.out.println("---------------------------------");
-        System.out.println("");
-
-        list.remove("2");
-        System.out.println("list.remove(\"2\") no changes");
-        System.out.println("List:");
-        ((Solution) list).printSol();
-        System.out.println("Clone:");
-        tt.printSol();
-        System.out.println("---------------------------------");
-        System.out.println("");
-
+        System.out.println("Expected 3, actual is " + ((Solution) list).getParent("8"));
         list.remove("5");
-        System.out.println("list.remove(\"5\") no changes");
-        System.out.println("List:");
-        ((Solution) list).printSol();
-        System.out.println("Clone:");
-        tt.printSol();
-        System.out.println("---------------------------------");
-        System.out.println("");
+        System.out.println("Expected null, actual is " + ((Solution) list).getParent("11"));
 
-        try(
-                FileInputStream fis = new FileInputStream("c:\\2204");
-                ObjectInputStream ois = new ObjectInputStream(fis))
-        {
-            list2 = (Solution)ois.readObject();
-        }catch (Exception exc) {exc.printStackTrace();}
-        System.out.println("\nREAD\n");
-        System.out.println("List2:");
-        ((Solution) list2).printSol();
-        System.out.println("Clone:");
-        System.out.println("---------------------------------");
-        System.out.println("");
-
-        System.out.println("=============== Iterator test ===============");
-        Iterator<String> itr = list.iterator();
-        while (itr.hasNext()) {
-            String a = itr.next();
-            System.out.print(a + " ");
-        }
-        System.out.println("\nExpected size 6 = " + list.size());
-
-        System.out.println("\nIter remove 4");
-        Iterator<String> itr2 = list.iterator();
-        while (itr2.hasNext()) {
-            if (itr2.next().contains("4")) {
-                itr2.remove();
-            }
-        }
-
-        Iterator<String> itr3 = list.iterator();
-        while (itr3.hasNext()) {
-            String a = itr3.next();
-            System.out.print(a + " ");
-        }
-        System.out.println("\nCLEAR\n");
-        list2.clear();
-        System.out.println("List2:");
-        ((Solution) list2).printSol();
-        System.out.println("---------------------------------");
-        System.out.println("");
-        System.out.println(list2.beParents);
+        for (String n : list)
+            System.out.print(n + " ");
     }
-
-//    public static void main(String[] args) {
-//        List<String> list = new Solution();
-//        for (int i = 1; i < 16; i++) {
-//            list.add(String.valueOf(i));
-//        }
-//        System.out.println("Expected 3, actual is " + ((Solution) list).getParent("8"));
-//        list.remove("5");
-//        System.out.println("Expected null, actual is " + ((Solution) list).getParent("11"));
-//
-//        for (String n : list)
-//            System.out.print(n + " ");
-//    }
 
     int size = 0;
     boolean hasSecond = false;
@@ -218,7 +96,34 @@ public class Solution
         return size;
     }
 
-//    @Override
+    @Override
+    public boolean equals(Object o)
+    {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        if (!super.equals(o)) return false;
+
+        Solution strings = (Solution) o;
+
+        if (size != strings.size) return false;
+        if (hasSecond != strings.hasSecond) return false;
+        if (first != null ? !first.equals(strings.first) : strings.first != null) return false;
+        if (last != null ? !last.equals(strings.last) : strings.last != null) return false;
+        return beParents != null ? beParents.equals(strings.beParents) : strings.beParents == null;
+    }
+
+    @Override
+    public int hashCode()
+    {
+        int result = super.hashCode();
+        result = 31 * result + size;
+        result = 31 * result + (hasSecond ? 1 : 0);
+        result = 31 * result + (first != null ? first.hashCode() : 0);
+        result = 31 * result + (last != null ? last.hashCode() : 0);
+        result = 31 * result + (beParents != null ? beParents.hashCode() : 0);
+        return result;
+    }
+    //    @Override
 //    public String get(int index)
 //    {
 //        new UnsupportedOperationException();
@@ -240,6 +145,34 @@ public class Solution
             this.parent = null;
             this.left = null;
             this.right = null;
+        }
+
+        @Override
+        public boolean equals(Object o)
+        {
+            if (this == o) return true;
+            if (o == null || getClass() != o.getClass()) return false;
+
+            Node node = (Node) o;
+
+            if (item != null ? !item.equals(node.item) : node.item != null) return false;
+            if (next != null ? !next.equals(node.next) : node.next != null) return false;
+            if (prev != null ? !prev.equals(node.prev) : node.prev != null) return false;
+            if (parent != null ? !parent.equals(node.parent) : node.parent != null) return false;
+            if (left != null ? !left.equals(node.left) : node.left != null) return false;
+            return right != null ? right.equals(node.right) : node.right == null;
+        }
+
+        @Override
+        public int hashCode()
+        {
+            int result = item != null ? item.hashCode() : 0;
+            result = 31 * result + (next != null ? next.hashCode() : 0);
+            result = 31 * result + (prev != null ? prev.hashCode() : 0);
+            result = 31 * result + (parent != null ? parent.hashCode() : 0);
+            result = 31 * result + (left != null ? left.hashCode() : 0);
+            result = 31 * result + (right != null ? right.hashCode() : 0);
+            return result;
         }
     }
 
@@ -328,9 +261,11 @@ public class Solution
     }
 
     String unlink(Node x) {
+        int count = 0;
         final String element = x.item;
         final Node next = x.next;
         final Node prev = x.prev;
+        if (last == x && !beParents.contains(x.parent) && x != root) beParents.add(0, x.parent);
 
         if (prev == null) {
             first = next;
@@ -349,7 +284,6 @@ public class Solution
         x.item = null;
         size--;
         modCount++;
-        if (last == x && !beParents.contains(x.parent) && x != root) beParents.add(0, x.parent);
         if (x.parent == null){
             if (x == root.left)
                 root.left = null;
@@ -371,19 +305,6 @@ public class Solution
         return element;
     }
 
-    void linkBefore(String e, Node succ) {
-        // assert succ != null;
-        final Node pred = succ.prev;
-        final Node newNode = new Node(pred, e, succ);
-        succ.prev = newNode;
-        if (pred == null)
-            first = newNode;
-        else
-            pred.next = newNode;
-        size++;
-        modCount++;
-    }
-
     private String outOfBoundsMsg(int index) {
         return "Index: "+index+", Size: "+size;
     }
@@ -396,22 +317,19 @@ public class Solution
 
 @Override
     public Iterator<String> iterator() {
-        return listIterator(0);
+    checkPositionIndex(0);
+    return new ListItr();
     }
 
-    public ListIterator<String> listIterator(int index) {
-        checkPositionIndex(index);
-        return new ListItr(index);
-    }
     private class ListItr implements ListIterator<String> {
         private Node lastReturned;
         private Node next;
         private int nextIndex;
         private int expectedModCount = modCount;
 
-        ListItr(int index) {
-            next = (index == size) ? null : node(index);
-            nextIndex = index;
+        ListItr() {
+            next = (0 == size) ? null : node(0);
+            nextIndex = 0;
         }
 
         public boolean hasNext() {
@@ -464,6 +382,7 @@ public class Solution
                 nextIndex--;
             lastReturned = null;
             expectedModCount++;
+            expectedModCount = modCount;
 
         }
 
@@ -477,16 +396,13 @@ public class Solution
         public void add(String e) {
             checkForComodification();
             lastReturned = null;
-            if (next == null)
-                linkLast(e);
-            else
-                linkBefore(e, next);
+            linkLast(e);
             nextIndex++;
             expectedModCount++;
         }
 
         final void checkForComodification() {
-            if (false)
+            if (modCount != expectedModCount)
                 throw new ConcurrentModificationException();
         }
     }
@@ -521,7 +437,9 @@ public class Solution
     String getLeft(String value) {
         if (value == null || first == null) return null;
         Node next = first;
-        if (value.equals(first.item)) return first.left.item;
+        if (value.equals(first.item))
+            if (first.left == null) return null;
+            else return first.left.item;
         while(!value.equals(next.item)){
             if (next == last) return null;
             next = next.next;
@@ -534,23 +452,15 @@ public class Solution
     String getRight(String value) {
         if (value == null || first == null) return null;
         Node next = first;
-        if (value.equals(first.item)) return first.right.item;
+        if (value.equals(first.item))
+            if (first.right == null) return null;
+            else return first.right.item;
         while(!value.equals(next.item)){
             if (next == last) return null;
             next = next.next;
         }
         if (next.right != null)
             return next.right.item;
-        return null;
-    }
-
-    Node find (String str){
-        if (str == null || first == null) return null;
-        Node next = first;
-        while (next != null){
-            if (str.equals(next.item)) return next;
-            next = next.next;
-        }
         return null;
     }
 
@@ -595,70 +505,8 @@ public class Solution
     }
 
 @Override
-    public Object clone() {
+    public Solution clone() {
         Solution clone = new Solution();
-//        if (size() == 0) {return clone;}
-//        Node nextNode = first;
-//        Node prev;
-//        Node next;
-//        Node par;
-//        Node left;
-//        Node right;
-//        clone.first = new Node(null, first.item, null);
-//        if (size() > 1)
-//        {
-//            prev = clone.first;
-//            next = clone.first;
-//            do
-//            {
-//                left = nextNode.left;
-//                right = nextNode.right;
-//                nextNode = nextNode.next;
-//                par = nextNode.parent;
-//                clone.last = new Node(prev, nextNode.item, null);
-//                if (par == null) clone.last.parent = null;
-//                else clone.last.parent = clone.find(par.item);
-//                clone.last.prev.next = clone.last;
-//                prev = clone.last;
-//            }
-//            while (nextNode != last);
-//            for (Node n : beParents)
-//                while (next != null)
-//                {
-//                    if (n.item.equals(next.item))
-//                        clone.beParents.add(next);
-//                    if (next.next != null)
-//                        next = next.next;
-//                    else
-//                    {
-//                        next = clone.first;
-//                        break;
-//                    }
-//                }
-//            next = clone.first;
-//            nextNode = first;
-//            while (nextNode != null){
-//                if (nextNode.left == null) next.left = null;
-//                else next.left = clone.find(nextNode.left.item);
-//                if (nextNode.right == null) next.right = null;
-//                else next.right = clone.find(nextNode.right.item);
-//                next = next.next;
-//                nextNode = nextNode.next;
-//            }
-//        }else {
-//            clone.first.item = first.item;
-//            clone.last = clone.first;
-//            clone.hasSecond = hasSecond;
-//            clone.size = size;
-//            clone.root = new Node(null, null, clone.first);
-//            clone.root.left = clone.first;
-//            return clone;
-//        }
-//        clone.hasSecond = hasSecond;
-//        clone.size = size;
-//        clone.root = new Node(null, null, clone.first);
-//        clone.root.left = clone.first;
-//        if (root.right != null) clone.root.right = clone.first.next;
         byte[] bytes = null;
         try (ByteArrayOutputStream baos = new ByteArrayOutputStream();
             ObjectOutputStream oos = new ObjectOutputStream(baos))
