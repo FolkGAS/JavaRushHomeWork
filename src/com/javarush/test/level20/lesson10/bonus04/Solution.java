@@ -64,40 +64,21 @@ public class Solution
             list.add(String.valueOf(i));
         }
         Solution tt = (Solution)((Solution) list).clone();
-        for (String n : list){
-            System.out.print(n + "<-" + ((Solution) list).getParent(n) + " L" + ((Solution) list).getLeft(n) + " R" + ((Solution) list).getRight(n) + "\t");
-        }
-        System.out.println("");
-        for (String n : tt)
-            System.out.print(n + "<-" + ((Solution) tt).getParent(n) + " L" + ((Solution) tt).getLeft(n) + " R" + ((Solution) tt).getRight(n) + "\t");
-        System.out.println("");
-        System.out.println("list.size = " + list.size());
-        System.out.println("tt.size = " + tt.size());
-        for (Node s : ((Solution) list).beParents)
-            System.out.print(s.item + " . ");
-        System.out.println("");
-        for (Node s : ((Solution) tt).beParents)
-            System.out.print(s.item + " . ");
-        System.out.println("");
+        System.out.println("List:");
+        ((Solution) list).printSol();
+        System.out.println("Clone:");
+        tt.printSol();
+        System.out.println("---------------------------------");
         System.out.println("");
 
         list.remove("7");
         System.out.println("list.remove(\"7\")\t7, 15");
-        for (String n : list)
-            System.out.print(n + "<-" + ((Solution) list).getParent(n) + " L" + ((Solution) list).getLeft(n) + " R" + ((Solution) list).getRight(n) + "\t");
+        System.out.println("List:");
+        ((Solution) list).printSol();
+        System.out.println("Clone:");
+        tt.printSol();
+        System.out.println("---------------------------------");
         System.out.println("");
-        for (String n : tt)
-            System.out.print(n + "<-" + ((Solution) tt).getParent(n) + " L" + ((Solution) tt).getLeft(n) + " R" + ((Solution) tt).getRight(n) + "\t");
-        System.out.println("");
-        for (Node s : ((Solution) list).beParents)
-            System.out.print(s.item + " . ");
-        System.out.println("");
-        for (Node s : ((Solution) tt).beParents)
-            System.out.print(s.item + " . ");
-        System.out.println("");
-        System.out.println("list.size = " + list.size());
-        System.out.println("tt.size = " + tt.size());
-
         System.out.println("");
 
         try(
@@ -110,90 +91,47 @@ public class Solution
 
         list.remove("2");
         System.out.println("list.remove(\"2\")\t2, 5, 6, 11, 12, 13, 14");
-        for (String n : list)
-            System.out.print(n + "<-" + ((Solution) list).getParent(n) + " L" + ((Solution) list).getLeft(n) + " R" + ((Solution) list).getRight(n) + "\t");
-        System.out.println("");
-        for (String n : tt)
-            System.out.print(n + "<-" + ((Solution) tt).getParent(n) + " L" + ((Solution) tt).getLeft(n) + " R" + ((Solution) tt).getRight(n) + "\t");
-        System.out.println("");
-        for (Node s : ((Solution) list).beParents)
-            System.out.print(s.item + " . ");
-        System.out.println("");
-        for (Node s : ((Solution) tt).beParents)
-            System.out.print(s.item + " . ");
-        System.out.println("");
-        System.out.println("list.size = " + list.size());
-        System.out.println("tt.size = " + tt.size());
+        System.out.println("List:");
+        ((Solution) list).printSol();
+        System.out.println("Clone:");
+        tt.printSol();
+        System.out.println("---------------------------------");
         System.out.println("");
 
         tt.remove("1");
         System.out.println("tt.remove(\"1\")\t1, 3, 4, 7, 8, 9, 10, 15");
-        for (String n : list)
-            System.out.print(n + "<-" + ((Solution) list).getParent(n) + " L" + ((Solution) list).getLeft(n) + " R" + ((Solution) list).getRight(n) + "\t");
-        System.out.println("");
-        for (String n : tt)
-            System.out.print(n + "<-" + ((Solution) tt).getParent(n) + " L" + ((Solution) tt).getLeft(n) + " R" + ((Solution) tt).getRight(n) + "\t");
-        System.out.println("");
-        for (Node s : ((Solution) list).beParents)
-            System.out.print(s.item + " . ");
-        System.out.println("");
-        for (Node s : ((Solution) tt).beParents)
-            System.out.print(s.item + " . ");
-        System.out.println("");
-        System.out.println("list.size = " + list.size());
-        System.out.println("tt.size = " + tt.size());
+        System.out.println("List:");
+        ((Solution) list).printSol();
+        System.out.println("Clone:");
+        tt.printSol();
+        System.out.println("---------------------------------");
         System.out.println("");
 
         list.remove("7");
         System.out.println("list.remove(\"7\") no changes");
-        for (String n : list)
-            System.out.print(n + "<-" + ((Solution) list).getParent(n) + " L" + ((Solution) list).getLeft(n) + " R" + ((Solution) list).getRight(n) + "\t");
-        System.out.println("");
-        for (String n : tt)
-            System.out.print(n + "<-" + ((Solution) tt).getParent(n) + " L" + ((Solution) tt).getLeft(n) + " R" + ((Solution) tt).getRight(n) + "\t");
-        System.out.println("");
-        for (Node s : ((Solution) list).beParents)
-            System.out.print(s.item + " . ");
-        System.out.println("");
-        for (Node s : ((Solution) tt).beParents)
-            System.out.print(s.item + " . ");
-        System.out.println("");
-        System.out.println("list.size = " + list.size());
-        System.out.println("tt.size = " + tt.size());
+        System.out.println("List:");
+        ((Solution) list).printSol();
+        System.out.println("Clone:");
+        tt.printSol();
+        System.out.println("---------------------------------");
         System.out.println("");
 
         list.remove("2");
         System.out.println("list.remove(\"2\") no changes");
-        for (String n : list)
-            System.out.print(n + "<-" + ((Solution) list).getParent(n) + " L" + ((Solution) list).getLeft(n) + " R" + ((Solution) list).getRight(n) + "\t");
-        System.out.println("");
-        for (String n : tt)
-            System.out.print(n + "<-" + ((Solution) tt).getParent(n) + " L" + ((Solution) tt).getLeft(n) + " R" + ((Solution) tt).getRight(n) + "\t");
-        System.out.println("");
-        for (Node s : ((Solution) list).beParents)
-            System.out.print(s.item + " . ");
-        System.out.println("");
-        for (Node s : ((Solution) tt).beParents)
-            System.out.print(s.item + " . ");
-        System.out.println("");
-        System.out.println("list.size = " + list.size());
-        System.out.println("tt.size = " + tt.size());
+        System.out.println("List:");
+        ((Solution) list).printSol();
+        System.out.println("Clone:");
+        tt.printSol();
+        System.out.println("---------------------------------");
         System.out.println("");
 
         list.remove("5");
         System.out.println("list.remove(\"5\") no changes");
-        for (String n : list)
-            System.out.print(n + "<-" + ((Solution) list).getParent(n) + " L" + ((Solution) list).getLeft(n) + " R" + ((Solution) list).getRight(n) + "\t");
-        System.out.println("");
-        for (String n : tt)
-            System.out.print(n + "<-" + ((Solution) tt).getParent(n) + " L" + ((Solution) tt).getLeft(n) + " R" + ((Solution) tt).getRight(n) + "\t");
-        System.out.println("");
-        for (Node s : ((Solution) list).beParents)
-            System.out.print(s.item + " . ");
-        System.out.println("");
-        for (Node s : ((Solution) tt).beParents)
-            System.out.print(s.item + " . ");
-        System.out.println("");
+        System.out.println("List:");
+        ((Solution) list).printSol();
+        System.out.println("Clone:");
+        tt.printSol();
+        System.out.println("---------------------------------");
         System.out.println("");
 
         try(
@@ -203,15 +141,11 @@ public class Solution
             list2 = (Solution)ois.readObject();
         }catch (Exception exc) {exc.printStackTrace();}
         System.out.println("\nREAD\n");
-        for (String n : list2)
-            System.out.print(n + "<-" + ((Solution) list).getParent(n) + " L" + ((Solution) list).getLeft(n) + " R" + ((Solution) list).getRight(n) + "\t");
+        System.out.println("List2:");
+        ((Solution) list2).printSol();
+        System.out.println("Clone:");
+        System.out.println("---------------------------------");
         System.out.println("");
-        for (Node s : ((Solution) list2).beParents)
-            System.out.print(s.item + " . ");
-        System.out.println("");
-        System.out.println("list2.size = " + list2.size());
-        System.out.println(((Solution) list).first + "\t" + list2.first);
-        System.out.println(((Solution) list).beParents.hashCode() + "\t" + list2.beParents.hashCode());
 
         System.out.println("=============== Iterator test ===============");
         Iterator<String> itr = list.iterator();
@@ -236,14 +170,10 @@ public class Solution
         }
         System.out.println("\nCLEAR\n");
         list2.clear();
-        for (String n : list2)
-            System.out.print(n + "<-" + ((Solution) list).getParent(n) + " L" + ((Solution) list).getLeft(n) + " R" + ((Solution) list).getRight(n) + "\t");
+        System.out.println("List2:");
+        ((Solution) list2).printSol();
+        System.out.println("---------------------------------");
         System.out.println("");
-        for (Node s : ((Solution) list2).beParents)
-            System.out.print(s.item + " . ");
-        System.out.println("");
-        System.out.println("list2.size = " + list2.size());
-        System.out.println(((Solution) list).first + "\t" + list2.first);
         System.out.println(list2.beParents);
     }
 
@@ -269,6 +199,17 @@ public class Solution
 
     public Solution(){
         rootInit();
+    }
+
+    public void printSol(){
+        for (String n : this){
+            System.out.print(n + "<-" + this.getParent(n) + " L" + this.getLeft(n) + " R" + this.getRight(n) + "\t");
+        }
+        System.out.println("");
+        System.out.println("size = " + this.size());
+        for (Node s : this.beParents)
+            System.out.print(s.item + " . ");
+        System.out.println("");
     }
 
     @Override
@@ -321,6 +262,7 @@ public class Solution
             first = newNode;
             beParents.add(first);
             first.parent = null;
+            first.prev = null;
             root.next = first;
             root.left = first;
         }else if (l == null){
@@ -525,7 +467,6 @@ public class Solution
 
         }
 
-
         public void set(String e) {
             if (lastReturned == null)
                 throw new IllegalStateException();
@@ -639,7 +580,6 @@ public class Solution
         return index >= 0 && index <= size;
     }
 
-
     private boolean isElementIndex(int index) {
         return index >= 0 && index < size;
     }
@@ -657,68 +597,81 @@ public class Solution
 @Override
     public Object clone() {
         Solution clone = new Solution();
-        if (size() == 0) {return clone;}
-        Node nextNode = first;
-        Node prev;
-        Node next;
-        Node par;
-        Node left;
-        Node right;
-        clone.first = new Node(null, first.item, null);
-        if (size() > 1)
+//        if (size() == 0) {return clone;}
+//        Node nextNode = first;
+//        Node prev;
+//        Node next;
+//        Node par;
+//        Node left;
+//        Node right;
+//        clone.first = new Node(null, first.item, null);
+//        if (size() > 1)
+//        {
+//            prev = clone.first;
+//            next = clone.first;
+//            do
+//            {
+//                left = nextNode.left;
+//                right = nextNode.right;
+//                nextNode = nextNode.next;
+//                par = nextNode.parent;
+//                clone.last = new Node(prev, nextNode.item, null);
+//                if (par == null) clone.last.parent = null;
+//                else clone.last.parent = clone.find(par.item);
+//                clone.last.prev.next = clone.last;
+//                prev = clone.last;
+//            }
+//            while (nextNode != last);
+//            for (Node n : beParents)
+//                while (next != null)
+//                {
+//                    if (n.item.equals(next.item))
+//                        clone.beParents.add(next);
+//                    if (next.next != null)
+//                        next = next.next;
+//                    else
+//                    {
+//                        next = clone.first;
+//                        break;
+//                    }
+//                }
+//            next = clone.first;
+//            nextNode = first;
+//            while (nextNode != null){
+//                if (nextNode.left == null) next.left = null;
+//                else next.left = clone.find(nextNode.left.item);
+//                if (nextNode.right == null) next.right = null;
+//                else next.right = clone.find(nextNode.right.item);
+//                next = next.next;
+//                nextNode = nextNode.next;
+//            }
+//        }else {
+//            clone.first.item = first.item;
+//            clone.last = clone.first;
+//            clone.hasSecond = hasSecond;
+//            clone.size = size;
+//            clone.root = new Node(null, null, clone.first);
+//            clone.root.left = clone.first;
+//            return clone;
+//        }
+//        clone.hasSecond = hasSecond;
+//        clone.size = size;
+//        clone.root = new Node(null, null, clone.first);
+//        clone.root.left = clone.first;
+//        if (root.right != null) clone.root.right = clone.first.next;
+        byte[] bytes = null;
+        try (ByteArrayOutputStream baos = new ByteArrayOutputStream();
+            ObjectOutputStream oos = new ObjectOutputStream(baos))
         {
-            prev = clone.first;
-            next = clone.first;
-            do
-            {
-                left = nextNode.left;
-                right = nextNode.right;
-                nextNode = nextNode.next;
-                par = nextNode.parent;
-                clone.last = new Node(prev, nextNode.item, null);
-                if (par == null) clone.last.parent = null;
-                else clone.last.parent = clone.find(par.item);
-                clone.last.prev.next = clone.last;
-                prev = clone.last;
-            }
-            while (nextNode != last);
-            for (Node n : beParents)
-                while (next != null)
-                {
-                    if (n.item.equals(next.item))
-                        clone.beParents.add(next);
-                    if (next.next != null)
-                        next = next.next;
-                    else
-                    {
-                        next = clone.first;
-                        break;
-                    }
-                }
-            next = clone.first;
-            nextNode = first;
-            while (nextNode != null){
-                if (nextNode.left == null) next.left = null;
-                else next.left = clone.find(nextNode.left.item);
-                if (nextNode.right == null) next.right = null;
-                else next.right = clone.find(nextNode.right.item);
-                next = next.next;
-                nextNode = nextNode.next;
-            }
-        }else {
-            clone.first.item = first.item;
-            clone.last = clone.first;
-            clone.hasSecond = hasSecond;
-            clone.size = size;
-            clone.root = new Node(null, null, clone.first);
-            clone.root.left = clone.first;
-            return clone;
-        }
-        clone.hasSecond = hasSecond;
-        clone.size = size;
-        clone.root = new Node(null, null, clone.first);
-        clone.root.left = clone.first;
-        if (root.right != null) clone.root.right = clone.first.next;
+            oos.writeObject(this);
+            bytes = baos.toByteArray();
+        }catch (Exception exc){exc.printStackTrace();}
+
+        try (ByteArrayInputStream bais = new ByteArrayInputStream(bytes);
+             ObjectInputStream ois = new ObjectInputStream(bais))
+        {
+            clone = (Solution) ois.readObject();
+        }catch (Exception exc){exc.printStackTrace();}
         return clone;
     }
 }
