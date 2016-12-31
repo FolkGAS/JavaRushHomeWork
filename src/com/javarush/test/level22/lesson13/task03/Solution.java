@@ -24,22 +24,11 @@ package com.javarush.test.level22.lesson13.task03;
 (0)501234567 - false
 */
 public class Solution {
-    public static void main(String args[]){
-        System.out.println(checkTelNumber("+380501234567"));
-        System.out.println(checkTelNumber("+38(050)1234567"));
-        System.out.println(checkTelNumber("+38050123-45-67"));
-        System.out.println(checkTelNumber("050123-4567"));
-        System.out.println(checkTelNumber("+38)050(1234567"));
-        System.out.println(checkTelNumber("+38(050)1-23-45-6-7"));
-        System.out.println(checkTelNumber("050ххх4567"));
-        System.out.println(checkTelNumber("050123456"));
-        System.out.println(checkTelNumber("(0)501234567"));
-    }
 
     public static boolean checkTelNumber(String telNumber) {
-        if (telNumber.matches("\\+[0-9[\\(,[0-9]{3},\\)]]{12}")){
-            return true;
-        }
+        if (telNumber.matches("(^\\+(\\D*\\d\\D*){12})|(^\\(?(\\D*\\d\\D*){10})"))
+            if (telNumber.matches("(\\+*\\d*)?(\\(\\d{3}\\))?\\d+-?\\d+-?\\d+$"))
+                return true;
         return false;
     }
 }
